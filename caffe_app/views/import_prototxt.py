@@ -1,11 +1,10 @@
+from caffe.proto import caffe_pb2
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-import yaml
-from caffe.proto import caffe_pb2
 from google.protobuf import text_format
+import yaml
 
-@csrf_exempt
 def importPrototxt(request):
     if request.method == 'POST':
         try:

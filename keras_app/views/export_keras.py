@@ -1,18 +1,18 @@
+from datetime import datetime
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-from json2keras import json_to_keras
-import yaml
 from ide.utils.json_utils import preprocess_json
-from datetime import datetime
-import random, string
+from .json2keras import json_to_keras
 import os
+import random, string
+import yaml
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def randomword(length):
     return ''.join(random.choice(string.lowercase) for i in range(length))
 
-@csrf_exempt
 def export_keras_json(request):
     if request.method == 'POST':
         net = yaml.safe_load(request.POST.get('net'))

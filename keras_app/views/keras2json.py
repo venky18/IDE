@@ -1,6 +1,7 @@
-from keras_utils import find_keras_shapes
-import json
 from ide.utils.json_utils import find_process_order
+import json
+from .keras_utils import find_keras_shapes
+
 
 '''
 with open('custom_net_keras.json') as data_file:

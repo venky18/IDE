@@ -1,10 +1,9 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-from keras2json import keras_to_json
 import json
+from .keras2json import keras_to_json
 
-@csrf_exempt
 def import_keras_json(request):
     if request.method == 'POST':
         try:

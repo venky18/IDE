@@ -15,7 +15,7 @@ def shape_convolution(i_s,config):
 		o_h = int(math.ceil(float(i_s[2] - config['nb_row'] + 1)/stride_h))
 		o_w = int(math.ceil(float(i_s[3] - config['nb_col'] + 1)/stride_w))
 	return [i_s[0],o_c,o_h,o_w]
-	
+
 def shape_pool(i_s,config):
 	pad = config['border_mode'] if 'border_mode' in config else 'valid'
 	o_c = config['nb_filter'] if 'nb_filter' in config else i_s[1]
@@ -84,7 +84,7 @@ def find_keras_shapes(data):
 	name_map = {}
 	for i in range(net_length):
 		name_map[data['config']['layers'][i]['name']] = i
-	
+
 	for i in range(net_length):
 		layer = data['config']['layers'][i]
 		layer_type = layer['class_name']
@@ -96,7 +96,7 @@ def find_keras_shapes(data):
 		if len(i_s) == 1:
 			i_s = i_s[0]
 		shape[i] = {'o':shape_map[layer_type](i_s,config),'i':i_s}
-	
+
 	shape_dict = {}
 	for i in range(net_length):
 		shape_dict['l' + str(i)] = shape[i]

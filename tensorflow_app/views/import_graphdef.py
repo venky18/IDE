@@ -1,11 +1,11 @@
-import tensorflow as tf
-from google.protobuf import text_format
-from tensorflow.core.framework import graph_pb2
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-import yaml
+from google.protobuf import text_format
 import math
+import tensorflow as tf
+from tensorflow.core.framework import graph_pb2
+import yaml
 
 # map from operation name(tensorflow) to layer name(caffe)
 op_layer_map = { 'Placeholder':'Input','Conv2D':'Convolution','MaxPool':'Pooling','MatMul':'InnerProduct','Relu':'ReLU','Softmax':'Softmax','LRN':'LRN','Concat':'Concat','AvgPool':'Pooling'}
@@ -51,7 +51,6 @@ def get_padding(node,layer):
 
     return int(pad_h),int(pad_w)
 
-@csrf_exempt
 def importGraphDef(request):
     if request.method == 'POST':
         try:

@@ -1,8 +1,8 @@
-import collections
 import caffe
 from caffe import layers as L
+import collections
+from .json_utils import preprocess_json
 import re
-from json_utils import preprocess_json
 
 def jsonToPrototxt(net,net_name):
     net = preprocess_json(net)

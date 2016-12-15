@@ -1,12 +1,13 @@
+from datetime import datetime
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-import yaml
-from datetime import datetime
-import random, string
-import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from ide.utils.jsonToPrototxt import jsonToPrototxt
+import os
+import random, string
+import yaml
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def randomword(length):
     return ''.join(random.choice(string.lowercase) for i in range(length))
@@ -14,7 +15,6 @@ def randomword(length):
 def index(request):
     return render(request, 'cloudcvIde/index.html')
 
-@csrf_exempt
 def exportToCaffe(request):
     if request.method == 'POST':
         net = yaml.safe_load(request.POST.get('net'))

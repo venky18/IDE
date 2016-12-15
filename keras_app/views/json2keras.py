@@ -1,4 +1,5 @@
-import math
+from .extra_layers import *
+from ide.utils.json_utils import *
 import json
 from keras.layers.advanced_activations import *
 from keras.layers.convolutional import *
@@ -6,8 +7,7 @@ from keras.layers.core import *
 from keras.layers.normalization import *
 from keras.layers import *
 from keras.models import Model
-from extra_layers import *
-from ide.utils.json_utils import *
+import math
 
 def check_for_same_padding(input_shape,output_shape,stride_h,stride_w,kernel_h,kernel_w,pad_h,pad_w):
 	o_h = int(math.ceil(float(input_shape[2])/stride_h))
