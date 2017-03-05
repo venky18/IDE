@@ -15,4 +15,4 @@ cd ..
 # make runtest -j4
 # make pycaffe -j4
 ./scripts/travis/build.sh
-./scripts/travis/testt.sh
+./scripts/travis/test.sh
