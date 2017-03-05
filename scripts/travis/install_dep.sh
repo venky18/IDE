@@ -32,10 +32,6 @@
 
 BASEDIR=$(dirname $0)
 source $BASEDIR/defaults.sh
-sudo add-apt-repository main
-sudo add-apt-repository universe
-sudo add-apt-repository restricted
-sudo add-apt-repository multiverse
 sudo apt-get update
 sudo apt-get install -y build-essential cmake git pkg-config
 sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler
