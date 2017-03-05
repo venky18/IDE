@@ -16,10 +16,11 @@ cd $HOME/tools
 git clone https://github.com/BVLC/caffe.git
 cd caffe
 #configure cmake file
-wget https://github.com/venky18/venky18.github.io/blob/master/Makefile.config
 cd python
 for req in $(cat requirements.txt); do sudo -H pip install $req --upgrade; done
 cd ..
+wget https://github.com/venky18/venky18.github.io/blob/master/Makefile.config
+cat  Makefile.config
 make all -j4
 make test -j4
 make runtest -j4
