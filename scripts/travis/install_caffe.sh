@@ -1,6 +1,6 @@
 #!/bin/bash
 # This script must be run with sudo.
-./install_dep.sh
+./scripts/travis/install_dep.sh
 cd $HOME/tools
 git clone https://github.com/BVLC/caffe.git
 cd caffe
