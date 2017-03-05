@@ -18,7 +18,7 @@ git clone https://github.com/BVLC/caffe.git
 cd caffe
 #configure cmake file
 wget https://github.com/venky18/venky18.github.io/blob/master/Makefile.config
-
+echo "ls"
 cd python
 for req in $(cat requirements.txt); do sudo -H pip install $req --upgrade; done
 make all -j2
