@@ -25,6 +25,7 @@ cache:
 before_install:
   - export NUM_THREADS=4
   - export SCRIPTS=./scripts/travis
+  - source $SCRIPTS/defaults.sh
   - sudo $SCRIPTS/install_caffe.sh
   - sudo $SCRIPTS/install_tensorflow.sh
 
