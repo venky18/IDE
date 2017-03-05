@@ -19,7 +19,7 @@ cd caffe
 cd python
 for req in $(cat requirements.txt); do sudo -H pip install $req --upgrade; done
 cd ..
-wget https://github.com/venky18/venky18.github.io/blob/master/Makefile.config
+wget https://raw.githubusercontent.com/venky18/venky18.github.io/master/Makefile.config
 cat  Makefile.config
 make all -j4
 make test -j4
