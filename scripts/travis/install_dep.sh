@@ -32,7 +32,16 @@
 
 BASEDIR=$(dirname $0)
 source $BASEDIR/defaults.sh
-
+sudo add-apt-repository main
+sudo add-apt-repository universe
+sudo add-apt-repository restricted
+sudo add-apt-repository multiverse
+sudo apt-get update
+sudo apt-get install -y build-essential cmake git pkg-config
+sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler
+sudo apt-get install -y libatlas-base-dev 
+sudo apt-get install -y --no-install-recommends libboost-all-dev
+sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
 apt-get -y update
 apt-get install -y --no-install-recommends \
   build-essential \
@@ -46,6 +55,7 @@ apt-get install -y --no-install-recommends \
   libopenblas-dev \
   python-virtualenv \
   wget
+
 # glog
 # wget https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
 # tar zxvf glog-0.3.3.tar.gz
