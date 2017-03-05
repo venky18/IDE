@@ -21,7 +21,7 @@ wget https://github.com/venky18/venky18.github.io/blob/master/Makefile.config
 
 cd python
 for req in $(cat requirements.txt); do sudo -H pip install $req --upgrade; done
-make all -j2
-make test -j2
-make runtest -j2
-make pycaffe -j2
+make all -j4
+make test -j4
+make runtest -j4
+make pycaffe -j4
