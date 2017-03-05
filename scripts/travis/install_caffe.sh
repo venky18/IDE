@@ -1,6 +1,6 @@
 #!/bin/bash
 # This script must be run with sudo.
-./scripts/travis/install_dep.sh
+source ./scripts/travis/install_dep.sh
  cd $HOME/tools
  git clone https://github.com/BVLC/caffe.git
  cd caffe
@@ -14,5 +14,5 @@ cd ..
 # make test -j4
 # make runtest -j4
 # make pycaffe -j4
-./scripts/travis/build.sh
-./scripts/travis/test.sh
+source ./scripts/travis/build.sh
+source ./scripts/travis/test.sh
