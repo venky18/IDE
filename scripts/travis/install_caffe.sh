@@ -1,6 +1,5 @@
 #!/bin/bash
 # This script must be run with sudo.
-sudo apt-get update
 sudo apt-get install -y build-essential cmake git pkg-config
 sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler
 sudo apt-get install -y libatlas-base-dev 
@@ -18,9 +17,9 @@ git clone https://github.com/BVLC/caffe.git
 cd caffe
 #configure cmake file
 wget https://github.com/venky18/venky18.github.io/blob/master/Makefile.config
-echo "ls"
 cd python
 for req in $(cat requirements.txt); do sudo -H pip install $req --upgrade; done
+cd ..
 make all -j4
 make test -j4
 make runtest -j4
