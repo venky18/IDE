@@ -17,36 +17,11 @@ cd $HOME/tools
 git clone https://github.com/BVLC/caffe.git
 cd caffe
 #configure cmake file
+wget https://github.com/venky18/venky18.github.io/blob/master/Makefile.config
 
-LINE () {
-  echo "$@" >> Makefile.config
-}
-
-cp Makefile.config.example Makefile.config
-
-LINE "BLAS := atlas"
-LINE "WITH_PYTHON_LAYER := 1"
-LINE "CPU_ONLY := 1"
-LINE "INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial"
-LINE "LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/hdf5/serial"
-LINE "BUILD_DIR := build"
-LINE "DISTRIBUTE_DIR := distribute"
-
-'''
-
-BLAS := atlas
-
-PYTHON_INCLUDE := /usr/include/python2.7 \
-    /usr/lib/python2.7/dist-packages/numpy/core/include
-PYTHON_LIB := /usr/lib
-WITH_PYTHON_LAYER := 1
-
-INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial
-LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/hdf5/serial
-
-
-BUILD_DIR := build
-DISTRIBUTE_DIR := distribute
-Q ?= @
-
-'''
+cd python
+for req in $(cat requirements.txt); do sudo -H pip install $req --upgrade; done
+make all -j2
+make test -j2
+make runtest -j2
+make pycaffe -j2
