@@ -47,11 +47,11 @@ apt-get install -y --no-install-recommends \
   python-virtualenv \
   wget
 # glog
-wget https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
-tar zxvf glog-0.3.3.tar.gz
-cd glog-0.3.3
-./configure
-make && make install
+# wget https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
+# tar zxvf glog-0.3.3.tar.gz
+# cd glog-0.3.3
+# ./configure
+# make && make install
 # gflags
 wget https://github.com/schuhschuh/gflags/archive/master.zip
 unzip master.zip
