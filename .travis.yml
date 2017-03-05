@@ -19,14 +19,13 @@ cache:
   custom_install: true
   apt: true
   directories:
-  - $TOOLS_DIR/miniconda
   - $TOOLS_DIR/opencv
-  - $TOOLS_DIR/caffe
+  - $TOOLS_DIR/tensorflow
 
 before_install:
   - export NUM_THREADS=4
   - export SCRIPTS=./scripts/travis
-  - export CONDA_DIR="$TOOLS_DIR/miniconda$PYTHON_VERSION"
+  - $SCRIPTS/install_caffe.sh
 
 install:
   - deactivate
