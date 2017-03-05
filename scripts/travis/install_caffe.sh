@@ -1,73 +1,52 @@
 #!/bin/bash
 # This script must be run with sudo.
+sudo apt-get update
+sudo apt-get install -y build-essential cmake git pkg-config
+sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler
+sudo apt-get install -y libatlas-base-dev 
+sudo apt-get install -y --no-install-recommends libboost-all-dev
+sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
+# (Python general)
+sudo apt-get install -y python-pip
+# (Python 2.7 development files)
+sudo apt-get install -y python-dev
+sudo apt-get install -y python-numpy python-scipy
+# (OpenCV 2.4)
+sudo apt-get install -y libopencv-dev
+cd $HOME/tools
+git clone https://github.com/BVLC/caffe.git
+cd caffe
+#configure cmake file
 
-MAKE="make --jobs=$NUM_THREADS"
+LINE () {
+  echo "$@" >> Makefile.config
+}
 
-# This ppa is for gflags and glog
-sudo add-apt-repository -y ppa:tuleu/precise-backports
-sudo apt-get -y update
-sudo apt-get install -y \
-    wget git curl \
-    python-dev python-numpy python3-dev\
-    libleveldb-dev libsnappy-dev libopencv-dev \
-    libprotobuf-dev protobuf-compiler \
-    libatlas-dev libatlas-base-dev \
-    libhdf5-serial-dev libgflags-dev libgoogle-glog-dev \
-    bc
+cp Makefile.config.example Makefile.config
 
-echo "Installed dependencies"
+LINE "BLAS := atlas"
+LINE "WITH_PYTHON_LAYER := 1"
+LINE "CPU_ONLY := 1"
+LINE "INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial"
+LINE "LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/hdf5/serial"
+LINE "BUILD_DIR := build"
+LINE "DISTRIBUTE_DIR := distribute"
 
-# Add a special apt-repository to install CMake 2.8.9 for CMake Caffe build,
-# if needed.  By default, Aptitude in Ubuntu 12.04 installs CMake 2.8.7, but
-# Caffe requires a minimum CMake version of 2.8.8.
-A=$PWD
-cd $TOOLS_DIR
-if $WITH_CMAKE; then
-  # cmake 3 will make sure that the python interpreter and libraries match
-  wget --no-check-certificate http://www.cmake.org/files/v3.2/cmake-3.2.3-Linux-x86_64.sh -O cmake3.sh
-  chmod +x cmake3.sh
-  ./cmake3.sh --prefix=$TOOLS_DIR --skip-license --exclude-subdir
-fi
+'''
 
-conda install --yes numpy scipy matplotlib scikit-image pip
-# Let conda install boost (so that boost_python matches)
-conda install --yes -c https://conda.binstar.org/menpo boost=1.56.0
+BLAS := atlas
 
-echo "Installed conda packages and cmake"
+PYTHON_INCLUDE := /usr/include/python2.7 \
+    /usr/lib/python2.7/dist-packages/numpy/core/include
+PYTHON_LIB := /usr/lib
+WITH_PYTHON_LAYER := 1
 
-# Install LMDB
-LMDB_URL=https://github.com/LMDB/lmdb/archive/LMDB_0.9.18.tar.gz
-LMDB_FILE=$TOOLS_DIR/lmdb.tar.gz
-pushd .
-wget $LMDB_URL -O $LMDB_FILE
-tar -C $TOOLS_DIR -xzvf $LMDB_FILE
-cd $TOOLS_DIR/lmdb*/libraries/liblmdb/
-
-# Using # as delimiter in the next line. Replacing the prefix path to CONDA_DIR
-sed -i '29s#.*#prefix='"$CONDA_DIR"'#' Makefile
-$MAKE
-$MAKE install
-popd
-rm -f $LMDB_FILE
-cd $A
-
-echo "Installed LMDB"
-
-CAFFE_URL="https://github.com/BVLC/caffe.git"
-CAFFE_DIR="$TOOLS_DIR/caffe"
-
-# Get source
-git clone $CAFFE_URL $CAFFE_DIR
-
-echo "Cloned Caffe"
-
-# Install Protobuf & OpenCV library
-conda install -c https://conda.anaconda.org/anaconda protobuf
-conda install -c https://conda.anaconda.org/menpo opencv
-
-#Install tensorflow
-pip uninstall tensorflow
-conda install -c conda-forge tensorflow
+INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial
+LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/hdf5/serial
 
 
-echo "Installed Protobuf, Conda through Conda and tensorflow"
+BUILD_DIR := build
+DISTRIBUTE_DIR := distribute
+Q ?= @
+
+'''
