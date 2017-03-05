@@ -44,7 +44,7 @@ install:
   - pip install python-coveralls
   - pip install flake8
 #  - $SCRIPTS/install-opencv.sh
-  - $SCRIPTS/travis_install_caffe.sh
+  - sudo $SCRIPTS/travis_install_caffe.sh
 
 before_script:
   - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/cuda/lib64:$CONDA_DIR/lib
