@@ -38,7 +38,6 @@ sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-ser
 sudo apt-get install -y libblas-dev  libatlas-dev libatlas-base-dev 
 sudo apt-get install -y --no-install-recommends libboost-all-dev
 sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
-apt-get -y update
 apt-get install -y --no-install-recommends \
   build-essential \
   libboost-filesystem-dev \
@@ -52,13 +51,6 @@ apt-get install -y --no-install-recommends \
   python-virtualenv \
   wget
 
-# glog
-# wget https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
-# tar zxvf glog-0.3.3.tar.gz
-# cd glog-0.3.3
-# ./configure
-# make && make install
-# gflags
 wget https://github.com/schuhschuh/gflags/archive/master.zip
 unzip master.zip
 cd gflags-master
@@ -125,36 +117,4 @@ if $WITH_IO ; then
     liblmdb-dev \
     libopencv-dev \
     libsnappy-dev
-fi
-
-if $WITH_CUDA ; then
-  # install repo packages
-  CUDA_REPO_PKG=cuda-repo-ubuntu1404_7.5-18_amd64.deb
-  wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/$CUDA_REPO_PKG
-  dpkg -i $CUDA_REPO_PKG
-  rm $CUDA_REPO_PKG
-
-  if $WITH_CUDNN ; then
-    ML_REPO_PKG=nvidia-machine-learning-repo-ubuntu1404_4.0-2_amd64.deb
-    wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1404/x86_64/$ML_REPO_PKG
-    dpkg -i $ML_REPO_PKG
-  fi
-
-  # update package lists
-  apt-get -y update
-
-  # install packages
-  CUDA_PKG_VERSION="7-5"
-  CUDA_VERSION="7.5"
-  apt-get install -y --no-install-recommends \
-    cuda-core-$CUDA_PKG_VERSION \
-    cuda-cudart-dev-$CUDA_PKG_VERSION \
-    cuda-cublas-dev-$CUDA_PKG_VERSION \
-    cuda-curand-dev-$CUDA_PKG_VERSION
-  # manually create CUDA symlink
-  ln -s /usr/local/cuda-$CUDA_VERSION /usr/local/cuda
-
-  if $WITH_CUDNN ; then
-    apt-get install -y --no-install-recommends libcudnn5-dev
-  fi
 fi

@@ -1,7 +1,7 @@
 #!/bin/bash
 # This script must be run with sudo.
 source ./scripts/travis/install_dep.sh
-echo"dependecies install"
+
  cd $HOME/tools
  git clone https://github.com/BVLC/caffe.git
  cd caffe
