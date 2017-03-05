@@ -1,25 +1,6 @@
 #!/bin/bash
 # This script must be run with sudo.
-sudo apt-get install -y build-essential cmake git pkg-config
-sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler
-sudo apt-get install -y libatlas-base-dev 
-sudo apt-get install -y --no-install-recommends libboost-all-dev
-sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
-# (Python general)
-sudo apt-get install -y python-pip
-# (Python 2.7 development files)
-sudo apt-get install -y python-dev
-sudo apt-get install -y python-numpy python-scipy
-# (OpenCV 2.4)
-sudo apt-get install -y libopencv-dev
-cd $HOME/tools
-wget https://github.com/schuhschuh/gflags/archive/master.zip
-unzip master.zip
-cd gflags-master
-mkdir build && cd build
-export CXXFLAGS="-fPIC" && cmake .. && make VERBOSE=1
-make 
-sudo make install
+./install_dep.sh
 cd $HOME/tools
 git clone https://github.com/BVLC/caffe.git
 cd caffe
