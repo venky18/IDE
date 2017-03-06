@@ -6,7 +6,7 @@ source ./scripts/travis/install_dep.sh
  git clone https://github.com/BVLC/caffe.git
  cd caffe
 # #configure cmake file
-./scripts/travis/configure-make.sh
+source ./scripts/travis/configure-make.sh
 cd python
 for req in $(cat requirements.txt); do sudo -H pip install $req --upgrade; done
 cd ..
