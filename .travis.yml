@@ -24,10 +24,10 @@ cache:
   - $TOOLS_DIR/opencv
   - $TOOLS_DIR/tensorflow
 
+
 before_install:
   - export NUM_THREADS=4
   # Unable to locate package libgflags-dev
-  - sudo echo "deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty main" | sudo tee -a /etc/apt/sources.list
   - export SCRIPTS=./scripts/travis
   - source $SCRIPTS/defaults.sh
   - sudo $SCRIPTS/install_caffe.sh

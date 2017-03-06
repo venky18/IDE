@@ -15,8 +15,8 @@ cd ..
 # make test -j4
 # make runtest -j4
 # make pycaffe -j4
-cd ..
-cd $HOME
 ls
-source ./scripts/travis/build.sh
-source ./scripts/travis/test.sh
+cd scripts/travis
+ls
+source ./build.sh
+source ./test.sh
