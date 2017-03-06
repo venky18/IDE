@@ -4,9 +4,9 @@ ls
 echo "look here"
 source ./scripts/travis/install_dep.sh
 
- cd $HOME/tools
- git clone https://github.com/BVLC/caffe.git
- cd caffe
+cd $HOME/tools
+git clone https://github.com/BVLC/caffe.git
+cd caffe
 # #configure cmake file
 source ./scripts/travis/configure-make.sh
 cd python
@@ -17,8 +17,10 @@ cd ..
 # make test -j4
 # make runtest -j4
 # make pycaffe -j4
-cd $HOME
-git clone https://github.com/venky18/IDE/tree/travis
-cd IDE/scripts/travis
-source ./build.sh
-source ./test.sh
+make --jobs $NUM_THREADS all test pycaffe warn
+make runtest
+make pytest
+# git clone https://github.com/venky18/IDE/tree/travis
+# cd IDE/scripts/travis
+# source ./build.sh
+# source ./test.sh
