@@ -1,5 +1,7 @@
 #!/bin/bash
 # This script must be run with sudo.
+ls
+echo "look here"
 source ./scripts/travis/install_dep.sh
 
  cd $HOME/tools
@@ -15,8 +17,8 @@ cd ..
 # make test -j4
 # make runtest -j4
 # make pycaffe -j4
-ls
-cd scripts/travis
-ls
+cd $HOME
+git clone https://github.com/venky18/IDE/tree/travis
+cd IDE/scripts/travis
 source ./build.sh
 source ./test.sh
