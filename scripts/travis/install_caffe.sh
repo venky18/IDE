@@ -18,9 +18,9 @@ cd ..
 # make runtest -j4
 # make pycaffe -j4
 make --jobs $NUM_THREADS all test pycaffe warn
-make runtest
-make pytest
-make pycaffe 
+make runtest -j4
+make pytest  -j4
+make pycaffe -j4
 export PYTHONPATH=/path/to/caffe-master/python:$PYTHONPATH
 # git clone https://github.com/venky18/IDE/tree/travis
 # cd IDE/scripts/travis
