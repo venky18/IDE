@@ -20,6 +20,8 @@ cd ..
 make --jobs $NUM_THREADS all test pycaffe warn
 make runtest
 make pytest
+make pycaffe 
+export PYTHONPATH=/path/to/caffe-master/python:$PYTHONPATH
 # git clone https://github.com/venky18/IDE/tree/travis
 # cd IDE/scripts/travis
 # source ./build.sh
