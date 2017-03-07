@@ -50,7 +50,7 @@ before_script:
   # - export PYTHONPATH=$PYTHONPATH:$TOOLS_DIR/caffe/python
 
 script:
-  # - flake8 ./
+  - echo "done"
 
 after_success:
   - echo "done"
