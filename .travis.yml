@@ -9,7 +9,7 @@ compiler: gcc
 env:
   global: 
   - NUM_THREADS=4
-  - DJANGO_SETTINGS_MODULE="cloudcv17.settings"
+  # - DJANGO_SETTINGS_MODULE="cloudcv17.settings"
   # Caffe
   - WITH_CUDA=false
   - WITH_CMAKE=true
