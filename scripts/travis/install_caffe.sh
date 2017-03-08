@@ -21,7 +21,7 @@ make all -j4
 make test -j4
 make runtest -j4
 make pycaffe -j4
-export PYTHONPATH=/path/to/caffe-master/python:$PYTHONPATH
+export PYTHONPATH=$HOME/tools/caffe/python:$PYTHONPATH
 # git clone https://github.com/venky18/IDE/tree/travis
 # cd IDE/scripts/travis
 # source ./build.sh
