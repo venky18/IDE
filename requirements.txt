@@ -1,4 +1,4 @@
-Django==1.9.3
+Django==1.11.29
 protobuf>=3.0
 pyaml==15.8.2
 numpy==1.11.0
